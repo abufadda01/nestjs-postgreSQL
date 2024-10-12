@@ -18,7 +18,7 @@ export class User {
     }) 
     firstName : string
 
-    @Column({
+    @Column({ 
         type : "varchar" ,
         length : 96 ,
         nullable : true // this means that this key can be an empty (optional) when its value is true
@@ -41,3 +41,9 @@ export class User {
     password : string
 
 }
+
+
+
+
+// we use relations between tables (entites) to avoid data duplicate , get accurate data if any of the column validations failed the relation data will failed also , data flexibility so we can increase the tables 
+// relations type : 1- one-to-one , 2- one-to-many , 3- many-to-one , 4- many-to-many
