@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { MetaOption } from "src/meta-options/meta-option.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -56,6 +57,9 @@ export class Post {
     
     // we use it in relations 
     tags? : string[]
-    // metaOptions : CreatePostMetaOptionsDto[]
+
+    @OneToOne(() => MetaOption) // this trigger that this key will be a one to one relation with MetaOption entity (table)
+    @JoinColumn() // when we create (bi-direction) one-to-one relation we just add this decorater in one of the two columns , that also mean that the realtion column will be create in the entity (post entity) , then we will have a new column in this table (forign key) that contain the (primary key) in the connected table
+    metaOptions : MetaOption
 
 }
