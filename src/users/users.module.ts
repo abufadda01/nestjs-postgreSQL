@@ -8,7 +8,8 @@ import { User } from './user.entity';
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
-  imports : [TypeOrmModule.forFeature([User])] // to register our table (entity) in our moduel to could access it in our service and make all DB operations
+  imports : [TypeOrmModule.forFeature([User])] , // to register our table (entity) in our moduel to could access it in our service and make all DB operations
+  exports : [UsersService]
 })
 
 
