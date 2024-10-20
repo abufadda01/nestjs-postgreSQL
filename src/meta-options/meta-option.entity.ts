@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Post } from "src/posts/post.entity";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity()
@@ -19,5 +20,7 @@ export class MetaOption {
     @UpdateDateColumn() // This decorator automatically updates the updatedDate field to the current date and time whenever the record is updated. It helps keep track of the last modification time of the record
     updatedDate : Date
     
+    @OneToOne(() => Post , (post) => post.metaOptions) // the second parameter its where the metaOption relay on the post (where it placed in the post the relation key inside the post) (the inverse of the relation) 
+    post : Post
 
 }

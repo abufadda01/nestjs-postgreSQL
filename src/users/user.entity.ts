@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Post } from "src/posts/post.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 
 // ORM DATABASE : OBJECT RELATIONAL MAPPING , query language like sql
@@ -39,6 +40,9 @@ export class User {
         nullable : false
     })
     password : string
+
+    @OneToMany(() => Post , (post) => post.author) // one user could have many posts
+    posts : Post[]
 
 }
 

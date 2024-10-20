@@ -55,7 +55,27 @@ export class PostsService {
         // })
 
         return posts
-    } 
+    }
+    
+    
+
+    public async deletePost(id : number){
+
+        let post = await this.postRepository.findOneBy({id})
+
+        let inversePost = await this.metaOptionRepository.find({
+            where : {id : post.metaOptions.id} ,
+            relations : {
+                post : true // to return the related post record also in the metaOption record
+            }
+        })
+
+        // await this.postRepository.delete(id) // delete the post 
+
+        // await this.metaOptionRepository.delete(post.metaOptions.id) // delete the metaOptions that related to the post , when we have bi-directional one-to-one relation we can remove this case and it will deleted automaticlly by the useful use of the cascade key
+
+        return {deleted : true , id}
+    }
 
 
 }
